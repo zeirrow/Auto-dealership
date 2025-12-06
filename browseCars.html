@@ -103,6 +103,20 @@
     .drawer-transition {
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    /* mobile: small scale so cards feel like 'sugar cubes' */
+    @media (max-width: 640px) {
+      .car-card {
+        transform: scale(.94);
+        transform-origin: top center;
+        transition: transform .18s ease;
+      }
+
+      /* slightly shorter images on very small screens */
+      .car-card .car-img {
+        object-position: center;
+      }
+    }
   </style>
 </head>
 
@@ -134,7 +148,8 @@
   <div
     class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
     <div class="flex justify-around items-center h-16 px-2">
-      <a href="./index.html" class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+      <a href="./index.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
         <i class="fas fa-home text-lg mb-1"></i>
         <span class="text-[10px] font-medium">Home</span>
       </a>
@@ -164,7 +179,7 @@
   </div>
 
   <button aria-label="slide-bar" id="mobileFilterToggle"
-    class="lg:hidden fixed bottom-6 right-6 z-40 bg-slate-900 text-white w-14 h-14 rounded-full shadow-2xl shadow-amber-500/20 flex items-center justify-center text-xl hover:bg-amber-500 transition-colors">
+    class="lg:hidden fixed bottom-24 right-6 z-40 bg-slate-900 text-white w-14 h-14 rounded-full shadow-2xl shadow-amber-500/20 flex items-center justify-center text-xl hover:bg-amber-500 transition-colors">
     <i class="fas fa-sliders-h"></i>
   </button>
 
@@ -306,8 +321,8 @@
             Showing <span class="font-bold text-slate-900" id="resultCount">0</span> vehicles
           </div>
 
-          <div class="flex items-center gap-4 w-full sm:w-auto">
-            <select id="sortSelect"
+          <div class="flex items-center justify-between gap-4 w-full md:w-auto border border-slate-200 rounded-lg">
+            <select aria-label="sort by" id="sortSelect"
               class="bg-transparent border-none text-sm font-medium text-slate-700 focus:ring-0 cursor-pointer">
               <option value="price-desc">Price: High to Low</option>
               <option value="price-asc">Price: Low to High</option>
@@ -332,7 +347,7 @@
 
         <div id="activeFilters" class="flex flex-wrap gap-2 mb-6"></div>
 
-        <div id="carsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div id="carsContainer" class="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6">
         </div>
 
         <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
@@ -373,13 +388,13 @@
             Redefining the luxury automotive acquisition experience through transparency, integrity, and passion.
           </p>
           <div class="flex gap-4">
-            <a href="#"
+            <a href="#" aria-label="Facebook"
               class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
                 class="fab fa-instagram"></i></a>
-            <a href="#"
+            <a href="#" aria-label="Instagram"
               class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
                 class="fab fa-linkedin-in"></i></a>
-            <a href="#"
+            <a href="#" aria-label="Linkedin"
               class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
                 class="fab fa-twitter"></i></a>
           </div>
@@ -512,17 +527,17 @@
 
       // Generate HTML
       container.className = state.view === 'grid'
-        ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+        ? "grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6"
         : "flex flex-col gap-4";
 
       container.innerHTML = visibleData.map(car => {
         if (state.view === 'grid') {
           return `
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group animate-fade-in border border-slate-100">
+            <div class="car-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group animate-fade-in border border-slate-100">
               <div class="relative h-56 overflow-hidden">
                 ${car.badge ? `<span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">${car.badge}</span>` : ''}
                 <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur hover:bg-white text-white hover:text-red-500 transition-colors z-10 flex items-center justify-center"><i class="far fa-heart"></i></button>
-                <img src="${car.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${car.make}">
+                <img src="${car.image}" class="car-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${car.make}">
                 <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
                 <div class="absolute bottom-3 left-3 text-white">
                   <p class="text-xs font-medium opacity-90">${car.year} | ${formatNumber(car.mileage)} mi</p>
