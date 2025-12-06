@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Browse AutoElite's premium vehicle collection. Filter by price, brand, year and more.">
+  <title>Browse Inventory | AutoElite</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0f172a',
+              accent: '#f59e0b',
+              light: '#f8fafc',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Glassmorphism Utilities */
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Custom Range Slider Styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #f59e0b;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.4);
+      transition: transform 0.1s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+
+    /* Custom Scrollbar for sidebar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Mobile Drawer Transition */
+    .drawer-transition {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+
+<body
+  class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white flex flex-col min-h-screen">
+
+  <nav class="hidden md:block fixed w-full z-50 transition-all duration-300 glass-nav" id="navbar">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <div
+          class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <i class="fas fa-gem"></i>
+        </div>
+        <span class="font-heading font-bold text-2xl text-white tracking-tight">Auto<span
+            class="text-amber-500">Elite</span></span>
+      </a>
+
+      <div class="flex items-center space-x-8">
+        <a href="./index.html" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+        <a href="./browseCars.html" class="text-sm font-medium text-white border-b-2 border-amber-500 pb-1">Browse
+          Inventory</a>
+        <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">About Us</a>
+        <a href="./Contaxt-Us.html"
+          class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <div
+    class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
+    <div class="flex justify-around items-center h-16 px-2">
+      <a href="./index.html" class="flex flex-col items-center justify-center w-full h-full text-amber-500">
+        <i class="fas fa-home text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Home</span>
+      </a>
+      <a href="./Contaxt-Us.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-phone text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Contact us</span>
+      </a>
+      <a aria-label="Browse cars" href="./browseCars.html"
+        class="flex flex-col items-center justify-center w-full h-full">
+        <div
+          class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center -mt-6 shadow-lg shadow-amber-500/40 border-4 border-slate-900">
+          <i class="fas fa-car text-white text-xl"></i>
+        </div>
+      </a>
+      <a href="#"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-star text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Why Us</span>
+      </a>
+      <a href="./about.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-user text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">About Us</span>
+      </a>
+    </div>
+  </div>
+
+  <button aria-label="slide-bar" id="mobileFilterToggle"
+    class="lg:hidden fixed bottom-6 right-6 z-40 bg-slate-900 text-white w-14 h-14 rounded-full shadow-2xl shadow-amber-500/20 flex items-center justify-center text-xl hover:bg-amber-500 transition-colors">
+    <i class="fas fa-sliders-h"></i>
+  </button>
+
+  <div id="mobileDrawer" class="fixed inset-0 z-50 transform translate-x-full drawer-transition lg:hidden">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" id="mobileDrawerOverlay"></div>
+    <div class="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-heading font-bold text-xl text-slate-900">Filters</h3>
+          <button aria-label="time" id="closeDrawer"
+            class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-red-100 hover:text-red-500 transition-colors">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="mobileFiltersContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <header class="pt-32 pb-12 bg-slate-900 relative overflow-hidden border-b">
+    <div class="absolute inset-0 opacity-10">
+      <img
+        src="https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        alt="pattern" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50/50 to-transparent z-10"></div>
+
+    <div class="container mx-auto px-6 relative z-20 text-center md:text-left">
+      <h1 class="font-heading font-bold text-4xl md:text-5xl text-white mb-4">Premium Inventory</h1>
+      <p class="text-slate-400 text-lg max-w-2xl">Explore our curated collection of certified luxury vehicles. Use the
+        filters to find your perfect match.</p>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-6 py-8 relative mt-12 z-30">
+    <div class="flex flex-col lg:flex-row gap-8">
+
+      <aside class="hidden lg:block w-80 flex-shrink-0">
+        <div class="sticky top-28 bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6"
+          id="desktopFilters">
+
+          <div class="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+            <h2 class="font-heading font-bold text-lg text-slate-800"><i class="fas fa-filter text-amber-500 mr-2"></i>
+              Refine Search</h2>
+            <button id="resetFilters"
+              class="text-xs font-semibold text-slate-400 hover:text-amber-500 transition-colors uppercase tracking-wider">Reset</button>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Keywords</label>
+            <div class="relative">
+              <input type="text" id="searchInput" placeholder="Model, features..."
+                class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-3 pl-10 outline-none transition-all">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <i class="fas fa-search text-slate-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Max Price</label>
+              <span class="text-sm font-bold text-amber-600" id="priceValue">$300,000</span>
+            </div>
+            <input placeholder="range" type="range" id="priceRange" min="50000" max="500000" step="5000" value="500000"
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+            <div class="flex justify-between mt-1 text-xs text-slate-400">
+              <span>$50k</span>
+              <span>$500k+</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Make</label>
+            <div class="space-y-2 max-h-48 overflow-y-auto custom-scroll pr-2">
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="Mercedes-Benz"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Mercedes-Benz</span>
+              </label>
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="Porsche"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Porsche</span>
+              </label>
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="BMW"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">BMW</span>
+              </label>
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="Audi"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Audi</span>
+              </label>
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="Lamborghini"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Lamborghini</span>
+              </label>
+              <label class="flex items-center cursor-pointer group">
+                <input type="checkbox" value="Land Rover"
+                  class="brand-filter w-4 h-4 text-amber-500 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 focus:ring-2">
+                <span class="ml-2 text-sm text-slate-600 group-hover:text-slate-900">Land Rover</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mb-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Min Year</label>
+              <select id="minYear"
+                class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2.5 outline-none">
+                <option value="2015">2015</option>
+                <option value="2018">2018</option>
+                <option value="2020" selected>2020</option>
+                <option value="2022">2022</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Transmission</label>
+              <select id="transmission"
+                class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2.5 outline-none">
+                <option value="all">All</option>
+                <option value="Auto">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <section class="flex-grow">
+
+        <div
+          class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="text-sm text-slate-600">
+            Showing <span class="font-bold text-slate-900" id="resultCount">0</span> vehicles
+          </div>
+
+          <div class="flex items-center gap-4 w-full sm:w-auto">
+            <select id="sortSelect"
+              class="bg-transparent border-none text-sm font-medium text-slate-700 focus:ring-0 cursor-pointer">
+              <option value="price-desc">Price: High to Low</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="year-desc" selected>Newest Arrivals</option>
+              <option value="mileage-asc">Lowest Mileage</option>
+            </select>
+
+            <div class="h-6 w-px bg-slate-200"></div>
+
+            <div class="flex gap-1">
+              <button id="gridViewBtn"
+                class="p-2 rounded-lg bg-slate-100 text-slate-900 hover:bg-slate-200 transition-colors active-view">
+                <i class="fas fa-th-large"></i>
+              </button>
+              <button id="listViewBtn"
+                class="p-2 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+                <i class="fas fa-list"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="activeFilters" class="flex flex-wrap gap-2 mb-6"></div>
+
+        <div id="carsContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        </div>
+
+        <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-center">
+          <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-search text-3xl text-slate-400"></i>
+          </div>
+          <h3 class="font-heading font-bold text-2xl text-slate-800 mb-2">No vehicles found</h3>
+          <p class="text-slate-500 mb-6 max-w-sm">We couldn't find any matches for your current filters. Try adjusting
+            your criteria.</p>
+          <button onclick="resetFilters()"
+            class="px-6 py-2 bg-amber-500 text-white rounded-lg font-medium hover:bg-amber-600 transition-colors">
+            Clear All Filters
+          </button>
+        </div>
+
+        <div class="mt-12 text-center" id="loadMoreContainer">
+          <button id="loadMoreBtn"
+            class="px-8 py-3 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 hover:shadow-lg transition-all transform hover:-translate-y-1">
+            Load More Vehicles
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer id="contact" class="bg-slate-950 text-slate-300 py-16 border-t border-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-1">
+          <a href="#" class="flex items-center gap-2 mb-6">
+            <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-white text-sm">
+              <i class="fas fa-gem"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-white">AutoElite</span>
+          </a>
+          <p class="text-sm leading-relaxed mb-6 text-slate-400">
+            Redefining the luxury automotive acquisition experience through transparency, integrity, and passion.
+          </p>
+          <div class="flex gap-4">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Showroom</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Inventory</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Virtual Tours</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Sell Your Vehicle</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Financing</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Company</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Our Story</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Contact</h4>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
+              <span>8800 Wilshire Blvd,<br>Beverly Hills, CA 90211</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-phone text-amber-500"></i>
+              <span>+1 (310) 555-0123</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-envelope text-amber-500"></i>
+              <span>concierge@autoelite.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <p>&copy; 2024 AutoElite Dealership. All rights reserved.</p>
+        <p>Designed with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Data Source ---
+    const carData = [
+      { id: 1, make: "Mercedes-Benz", model: "AMG GT", year: 2023, price: 142900, mileage: 4500, trans: "Auto", image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: "New Arrival" },
+      { id: 2, make: "Porsche", model: "911 Carrera S", year: 2022, price: 128500, mileage: 1200, trans: "Auto", image: "https://images.unsplash.com/photo-1646567799137-b1e1508b6b96?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", badge: null },
+      { id: 3, make: "Audi", model: "RS7 Sportback", year: 2023, price: 118000, mileage: 800, trans: "Auto", image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: "Sold" },
+      { id: 4, make: "BMW", model: "M4 Competition", year: 2024, price: 92000, mileage: 150, trans: "Auto", image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: "Hot" },
+      { id: 5, make: "Lamborghini", model: "Huracán Evo", year: 2021, price: 245000, mileage: 3200, trans: "Auto", image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: null },
+      { id: 6, make: "Land Rover", model: "Range Rover", year: 2023, price: 105000, mileage: 5000, trans: "Auto", image: "https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: null },
+      { id: 7, make: "Porsche", model: "Taycan Turbo", year: 2022, price: 115000, mileage: 8000, trans: "Auto", image: "https://images.unsplash.com/photo-1595429610407-1319461be693?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", badge: "Electric" },
+      { id: 8, make: "Mercedes-Benz", model: "G63 AMG", year: 2021, price: 185000, mileage: 12000, trans: "Auto", image: "https://images.unsplash.com/photo-1648413653877-ade5eefd2f1b?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", badge: null },
+      { id: 9, make: "Audi", model: "R8 V10", year: 2020, price: 155000, mileage: 14000, trans: "Auto", image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", badge: null },
+    ];
+
+    // --- State Management ---
+    const state = {
+      filters: {
+        search: '',
+        maxPrice: 500000,
+        brands: [],
+        minYear: 2020,
+        transmission: 'all'
+      },
+      sort: 'year-desc',
+      view: 'grid', // 'grid' or 'list'
+      visibleCount: 6
+    };
+
+    // --- DOM Elements ---
+    const container = document.getElementById('carsContainer');
+    const resultCountEl = document.getElementById('resultCount');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const emptyState = document.getElementById('emptyState');
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+
+    // --- Formatting Utils ---
+    const formatPrice = (price) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(price);
+    const formatNumber = (num) => new Intl.NumberFormat('en-US').format(num);
+
+    // --- Render Functions ---
+    function getFilteredData() {
+      return carData.filter(car => {
+        const matchesSearch = (car.make + ' ' + car.model).toLowerCase().includes(state.filters.search.toLowerCase());
+        const matchesPrice = car.price <= state.filters.maxPrice;
+        const matchesBrand = state.filters.brands.length === 0 || state.filters.brands.includes(car.make);
+        const matchesYear = car.year >= state.filters.minYear;
+        const matchesTrans = state.filters.transmission === 'all' || car.trans === state.filters.transmission;
+        return matchesSearch && matchesPrice && matchesBrand && matchesYear && matchesTrans;
+      }).sort((a, b) => {
+        const [key, dir] = state.sort.split('-');
+        if (key === 'price') return dir === 'asc' ? a.price - b.price : b.price - a.price;
+        if (key === 'year') return dir === 'asc' ? a.year - b.year : b.year - a.year;
+        if (key === 'mileage') return dir === 'asc' ? a.mileage - b.mileage : b.mileage - a.mileage;
+        return 0;
+      });
+    }
+
+    function renderCars() {
+      const filtered = getFilteredData();
+      const visibleData = filtered.slice(0, state.visibleCount);
+
+      // Update UI Counts
+      resultCountEl.innerText = filtered.length;
+
+      // Toggle Empty State
+      if (filtered.length === 0) {
+        container.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        document.getElementById('loadMoreContainer').classList.add('hidden');
+        return;
+      } else {
+        container.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+      }
+
+      // Generate HTML
+      container.className = state.view === 'grid'
+        ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+        : "flex flex-col gap-4";
+
+      container.innerHTML = visibleData.map(car => {
+        if (state.view === 'grid') {
+          return `
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group animate-fade-in border border-slate-100">
+              <div class="relative h-56 overflow-hidden">
+                ${car.badge ? `<span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">${car.badge}</span>` : ''}
+                <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur hover:bg-white text-white hover:text-red-500 transition-colors z-10 flex items-center justify-center"><i class="far fa-heart"></i></button>
+                <img src="${car.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${car.make}">
+                <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-3 left-3 text-white">
+                  <p class="text-xs font-medium opacity-90">${car.year} | ${formatNumber(car.mileage)} mi</p>
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-lg text-slate-900 mb-1">${car.make} ${car.model}</h3>
+                <div class="flex justify-between items-center mt-3">
+                  <span class="font-bold text-xl text-amber-600">${formatPrice(car.price)}</span>
+                  <button 
+                  onclick="navigateToCarDetails('${car.id}')"
+                  class="text-xs font-semibold text-slate-500 border border-slate-500 px-3 py-1.5 rounded-full hover:bg-slate-900 hover:text-white transition-colors">Details</button>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          // List View Template
+          return `
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group animate-fade-in border border-slate-100 flex flex-col sm:flex-row h-auto sm:h-48">
+              <div class="relative w-full sm:w-72 h-48 sm:h-full flex-shrink-0">
+                <img src="${car.image}" class="w-full h-full object-cover" alt="${car.make}">
+                ${car.badge ? `<span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">${car.badge}</span>` : ''}
+              </div>
+              <div class="p-5 flex-grow flex flex-col justify-between">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <h3 class="font-heading font-bold text-xl text-slate-900">${car.make} ${car.model}</h3>
+                      <p class="text-sm text-slate-500 mt-1">${car.year} • ${formatNumber(car.mileage)} miles • ${car.trans}</p>
+                    </div>
+                    <button class="text-slate-400 hover:text-red-500 transition-colors"><i class="far fa-heart text-lg"></i></button>
+                  </div>
+                </div>
+                <div class="flex justify-between items-end mt-4">
+                  <span class="font-bold text-2xl text-amber-600">${formatPrice(car.price)}</span>
+                  <div class="flex flex-col gap-2">
+                    <button onclick="navigateToCarDetails('${car.id}')" class="px-5 py-2 text-sm font-semibold border border-slate-500 rounded-lg hover:bg-slate-50 transition-colors">View Details</button>
+                    <button class="px-5 py-2 text-sm font-bold bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">Test Drive</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      // Handle Load More visibility
+      if (filtered.length <= state.visibleCount) {
+        document.getElementById('loadMoreContainer').classList.add('hidden');
+      } else {
+        document.getElementById('loadMoreContainer').classList.remove('hidden');
+      }
+    }
+
+    // --- Event Listeners ---
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      state.filters.search = e.target.value;
+      state.visibleCount = 6; // Reset pagination
+      renderCars();
+    });
+
+    // Price Range
+    priceRange.addEventListener('input', (e) => {
+      state.filters.maxPrice = parseInt(e.target.value);
+      priceValue.innerText = formatPrice(state.filters.maxPrice);
+      state.visibleCount = 6;
+      renderCars();
+    });
+
+    // Brands
+    document.querySelectorAll('.brand-filter').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checked = Array.from(document.querySelectorAll('.brand-filter:checked')).map(c => c.value);
+        state.filters.brands = checked;
+        state.visibleCount = 6;
+        renderCars();
+        updateActiveChips();
+      });
+    });
+
+    // Selects
+    document.getElementById('minYear').addEventListener('change', (e) => {
+      state.filters.minYear = parseInt(e.target.value);
+      renderCars();
+    });
+
+    document.getElementById('transmission').addEventListener('change', (e) => {
+      state.filters.transmission = e.target.value;
+      renderCars();
+    });
+
+    // Sort
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      state.sort = e.target.value;
+      renderCars();
+    });
+
+    // View Toggle
+    const gridBtn = document.getElementById('gridViewBtn');
+    const listBtn = document.getElementById('listViewBtn');
+
+    gridBtn.addEventListener('click', () => {
+      state.view = 'grid';
+      gridBtn.classList.replace('text-slate-400', 'bg-slate-100');
+      gridBtn.classList.replace('hover:bg-slate-100', 'text-slate-900');
+      listBtn.classList.replace('bg-slate-100', 'text-slate-400');
+      listBtn.classList.replace('text-slate-900', 'hover:bg-slate-100');
+      renderCars();
+    });
+
+    listBtn.addEventListener('click', () => {
+      state.view = 'list';
+      listBtn.classList.replace('text-slate-400', 'bg-slate-100');
+      listBtn.classList.replace('hover:bg-slate-100', 'text-slate-900');
+      gridBtn.classList.replace('bg-slate-100', 'text-slate-400');
+      gridBtn.classList.replace('text-slate-900', 'hover:bg-slate-100');
+      renderCars();
+    });
+
+    // Load More
+    loadMoreBtn.addEventListener('click', () => {
+      state.visibleCount += 6;
+      renderCars();
+    });
+
+    // Reset
+    window.resetFilters = function () {
+      state.filters.search = '';
+      state.filters.maxPrice = 500000;
+      state.filters.brands = [];
+      state.filters.minYear = 2015;
+      state.filters.transmission = 'all';
+
+      // Reset UI inputs
+      document.getElementById('searchInput').value = '';
+      document.getElementById('priceRange').value = 500000;
+      document.getElementById('priceValue').innerText = formatPrice(500000);
+      document.querySelectorAll('.brand-filter').forEach(cb => cb.checked = false);
+      document.getElementById('minYear').value = '2015'; // Logic reset differs from UI default sometimes, adjusted for consistency
+
+      renderCars();
+      updateActiveChips();
+    };
+
+    function updateActiveChips() {
+      const chipContainer = document.getElementById('activeFilters');
+      chipContainer.innerHTML = '';
+      state.filters.brands.forEach(brand => {
+        const chip = document.createElement('div');
+        chip.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800';
+        chip.innerHTML = `${brand} <button class="ml-2 hover:text-amber-900" onclick="removeBrand('${brand}')"><i class="fas fa-times"></i></button>`;
+        chipContainer.appendChild(chip);
+      });
+    }
+
+    window.removeBrand = function (brand) {
+      const checkbox = Array.from(document.querySelectorAll('.brand-filter')).find(cb => cb.value === brand);
+      if (checkbox) {
+        checkbox.checked = false;
+        checkbox.dispatchEvent(new Event('change'));
+      }
+    };
+
+    // --- Mobile Drawer Logic ---
+    const drawer = document.getElementById('mobileDrawer');
+    const overlay = document.getElementById('mobileDrawerOverlay');
+    const toggle = document.getElementById('mobileFilterToggle');
+    const close = document.getElementById('closeDrawer');
+    const mobileContainer = document.getElementById('mobileFiltersContainer');
+    const desktopFilters = document.getElementById('desktopFilters');
+
+    // Clone desktop filters to mobile drawer to prevent ID conflicts
+    // In a real app, you'd bind state to both inputs. Here we just clone the HTML structure for display.
+    // For full functionality, we'd need to attach listeners to the cloned elements.
+    // Simplifying for this demo by moving elements or just styling.
+
+    toggle.addEventListener('click', () => {
+      // Simple clone for visual demo - in production, bind events
+      if (mobileContainer.children.length === 0) {
+        const clone = desktopFilters.cloneNode(true);
+        clone.classList.remove('hidden', 'lg:block', 'sticky', 'w-80');
+        clone.classList.add('w-full', 'shadow-none', 'border-none', 'p-0');
+
+        // Re-attach listeners to the cloned inputs (simplified approach)
+        clone.querySelector('#priceRange').addEventListener('input', (e) => {
+          state.filters.maxPrice = parseInt(e.target.value);
+          clone.querySelector('#priceValue').innerText = formatPrice(state.filters.maxPrice);
+          renderCars();
+        });
+
+        // Note: For a robust solution, we'd restructure the event logic, but this visualizes the UI concept.
+        mobileContainer.appendChild(clone);
+      }
+
+      drawer.classList.remove('translate-x-full');
+    });
+
+    const closeDrawerFunc = () => {
+      drawer.classList.add('translate-x-full');
+    };
+
+    close.addEventListener('click', closeDrawerFunc);
+    overlay.addEventListener('click', closeDrawerFunc);
+
+    // Initial Render
+    renderCars();
+
+    const navigateToCarDetails = (carId) => {
+      // Logic to navigate to car details page
+      window.location.href = `carSingle.html?id=${carId}`;
+    };
+
+  </script>
+</body>
+
+</html>

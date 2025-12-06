@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Discover the AutoElite legacy - 15+ years of redefining luxury automotive experiences through transparency, excellence, and passion.">
+  <title>About AutoElite | Our Legacy of Excellence</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0f172a',
+              accent: '#f59e0b',
+              light: '#f8fafc',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in': 'fadeIn 0.8s ease-out',
+            'count-up': 'countUp 2s ease-out forwards',
+            'slide-in-left': 'slideInLeft 0.8s ease-out',
+            'slide-in-right': 'slideInRight 0.8s ease-out',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            countUp: {
+              'from': { '--num': '0' },
+              'to': { '--num': 'var(--target)' },
+            },
+            slideInLeft: {
+              '0%': { transform: 'translateX(-30px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { transform: 'translateX(30px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Utilities */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Timeline Styling */
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: #f59e0b;
+      border: 4px solid white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Counter Animation */
+    .counter {
+      counter-reset: num var(--num);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .counter::after {
+      content: counter(num);
+    }
+
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Team Card Hover */
+    .team-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Milestone Counter */
+    .milestone-number {
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #d0d6e5 0%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      /* Mobile default */
+      font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    /* If you want even cleaner breakpoints: */
+    @media (min-width: 640px) {
+      .milestone-number {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .milestone-number {
+        font-size: 5rem;
+      }
+    }
+
+
+    @property --num {
+      syntax: '<integer>';
+      initial-value: 0;
+      inherits: false;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
+  <!-- Navigation -->
+  <nav class="hidden md:block fixed w-full z-50 transition-all duration-300 glass-nav" id="navbar">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <div
+          class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <i class="fas fa-gem"></i>
+        </div>
+        <span class="font-heading font-bold text-2xl text-white tracking-tight">Auto<span
+            class="text-amber-500">Elite</span></span>
+      </a>
+
+      <div class="flex items-center space-x-8">
+        <a href="./index.html" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Home</a>
+        <a href="./browseCars.html" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Browse
+          Inventory</a>
+        <a href="./about.html" class="text-sm font-medium text-white border-b-2 border-amber-500 pb-1">About Us</a>
+        <a href="./Contaxt-Us.html"
+          class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <div
+    class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
+    <div class="flex justify-around items-center h-16 px-2">
+      <a href="./index.html" class="flex flex-col items-center justify-center w-full h-full text-amber-500">
+        <i class="fas fa-home text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Home</span>
+      </a>
+      <a href="./Contaxt-Us.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-phone text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Contact us</span>
+      </a>
+      <a aria-label="Browse cars" href="./browseCars.html"
+        class="flex flex-col items-center justify-center w-full h-full">
+        <div
+          class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center -mt-6 shadow-lg shadow-amber-500/40 border-4 border-slate-900">
+          <i class="fas fa-car text-white text-xl"></i>
+        </div>
+      </a>
+      <a href="#"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-star text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">Why Us</span>
+      </a>
+      <a href="./about.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+        <i class="fas fa-user text-lg mb-1"></i>
+        <span class="text-[10px] font-medium">About Us</span>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- Hero Section -->
+  <section class="pt-24 md:pt-28 bg-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-40">
+      <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=3083&auto=format&fit=crop"
+        alt="Classic Car Collection" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/80"></div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel mb-6">
+          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          <span class="text-xs font-semibold tracking-widest text-white uppercase">Est. 2008</span>
+        </div>
+
+        <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight text-white mb-8">
+          Redefining<br>
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">Automotive
+            Excellence</span>
+        </h1>
+
+        <div class="max-w-2xl">
+          <p class="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed font-light">
+            For over 15 years, AutoElite has been the benchmark for luxury automotive acquisition,
+            transforming the car buying experience through uncompromising standards and genuine passion.
+          </p>
+
+          <div class="flex flex-wrap gap-6">
+            <a href="#our-story"
+              class="px-8 py-3.5 bg-amber-500 text-slate-900 font-bold rounded-lg hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/20 flex items-center gap-3">
+              <i class="fas fa-history"></i>
+              Our Story
+            </a>
+            <a href="#values"
+              class="px-8 py-3.5 glass-panel text-white font-semibold rounded-lg hover:bg-white/10 transition-colors flex items-center gap-3">
+              <i class="fas fa-star"></i>
+              Our Values
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestone Counters -->
+    <div class="container mx-auto px-6 relative z-10 my-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+          <div class="milestone-number mb-2">
+            <span class="counter" style="--target: 15"></span>+
+          </div>
+          <div class="text-sm font-medium text-slate-300">Years Excellence</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+          <div class="milestone-number mb-2">
+            <span class="counter" style="--target: 500"></span>+
+          </div>
+          <div class="text-sm font-medium text-slate-300">Vehicles Sold</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+          <div class="milestone-number mb-2">
+            <span class="counter" style="--target: 150"></span>
+          </div>
+          <div class="text-sm font-medium text-slate-300">Point Inspection</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+          <div class="milestone-number mb-2">
+            <span class="counter" style="--target: 99"></span>%
+          </div>
+          <div class="text-sm font-medium text-slate-300">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Founder's Vision -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col lg:flex-row gap-12 items-center">
+          <div class="lg:w-2/5">
+            <div class="relative">
+              <div class="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=3087&auto=format&fit=crop"
+                  alt="James Sterling, Founder" class="w-full h-full object-cover">
+              </div>
+              <div
+                class="absolute -bottom-6 -right-6 w-32 h-32 bg-amber-500 rounded-2xl flex flex-col items-center justify-center shadow-xl">
+                <div class="text-3xl font-bold text-white">15+</div>
+                <div class="text-xs text-white font-medium uppercase tracking-wider">Years</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:w-3/5">
+            <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Founder's Vision</span>
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">
+              "Excellence is not an act, but a habit"
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-slate-600 mb-6 text-lg leading-relaxed">
+                In 2008, I founded AutoElite with a simple yet revolutionary idea: the luxury car buying experience
+                should be as exceptional as the vehicles themselves. What began as a passion project has grown into
+                a standard-bearer for automotive excellence.
+              </p>
+
+              <p class="text-slate-600 mb-8 text-lg leading-relaxed">
+                Our mission extends beyond transactions. We're curators of automotive dreams, guardians of quality,
+                and architects of experiences that resonate with discerning drivers worldwide.
+              </p>
+
+              <div class="flex items-center gap-4">
+                <div>
+                  <div class="font-heading font-bold text-lg text-slate-900">James Sterling</div>
+                  <div class="text-slate-500">Founder & CEO, AutoElite</div>
+                </div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png"
+                  alt="Harvard Business School" class="h-6 opacity-70">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Timeline -->
+  <section id="our-story" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Our Journey</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">The AutoElite Story</h2>
+        <p class="text-slate-600">A timeline of innovation, excellence, and automotive passion.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- Timeline -->
+        <div class="space-y-12 relative">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item animate-fade-in">
+            <div class="timeline-dot"></div>
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="fas fa-rocket"></i>
+                </div>
+                <div>
+                  <div class="text-amber-600 font-bold text-lg">2008</div>
+                  <h3 class="font-heading text-xl font-bold text-slate-900">The Beginning</h3>
+                </div>
+              </div>
+              <p class="text-slate-600">
+                AutoElite is founded in Beverly Hills with a single showroom and a vision to revolutionize
+                luxury automotive retail. Our first sale: a pristine 2007 Porsche 911 Turbo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item animate-fade-in" style="animation-delay: 0.2s">
+            <div class="timeline-dot"></div>
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div>
+                  <div class="text-amber-600 font-bold text-lg">2012</div>
+                  <h3 class="font-heading text-xl font-bold text-slate-900">150-Point Inspection Standard</h3>
+                </div>
+              </div>
+              <p class="text-slate-600">
+                We introduce our industry-leading 150-point inspection process, setting a new benchmark
+                for pre-owned luxury vehicle certification. This becomes our signature quality guarantee.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item animate-fade-in" style="animation-delay: 0.4s">
+            <div class="timeline-dot"></div>
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <div>
+                  <div class="text-amber-600 font-bold text-lg">2016</div>
+                  <h3 class="font-heading text-xl font-bold text-slate-900">Global Sourcing Network</h3>
+                </div>
+              </div>
+              <p class="text-slate-600">
+                Establishment of our worldwide sourcing network, allowing us to locate and acquire rare
+                specifications from Europe, Asia, and the Middle East for discerning collectors.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item animate-fade-in" style="animation-delay: 0.6s">
+            <div class="timeline-dot"></div>
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="fas fa-award"></i>
+                </div>
+                <div>
+                  <div class="text-amber-600 font-bold text-lg">2020</div>
+                  <h3 class="font-heading text-xl font-bold text-slate-900">Luxury Retail Award</h3>
+                </div>
+              </div>
+              <p class="text-slate-600">
+                Recognition as "Luxury Automotive Retailer of the Year" by the International Automotive Association,
+                cementing our position as an industry leader in premium vehicle sales.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 -->
+          <div class="timeline-item animate-fade-in" style="animation-delay: 0.8s">
+            <div class="timeline-dot"></div>
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="fas fa-gem"></i>
+                </div>
+                <div>
+                  <div class="text-amber-600 font-bold text-lg">2024</div>
+                  <h3 class="font-heading text-xl font-bold text-slate-900">The Future of Luxury</h3>
+                </div>
+              </div>
+              <p class="text-slate-600">
+                Launch of our Virtual Concierge Service and expansion into electric hypercar curation,
+                positioning AutoElite at the forefront of automotive innovation for the next generation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values -->
+  <section id="values" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Our Philosophy</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">The AutoElite Difference</h2>
+        <p class="text-slate-600">Six pillars that define every interaction, every vehicle, every experience.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Value 1 -->
+        <div
+          class="animate-slide-in-left bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300">
+          <div
+            class="w-16 h-16 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Transparency</h3>
+          <p class="text-slate-600">
+            Complete visibility into vehicle history, pricing, and condition. No hidden fees, no surprises—just honest,
+            straightforward excellence.
+          </p>
+        </div>
+
+        <!-- Value 2 -->
+        <div
+          class="animate-slide-in-left bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300"
+          style="animation-delay: 0.1s">
+          <div
+            class="w-16 h-16 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Excellence</h3>
+          <p class="text-slate-600">
+            Uncompromising standards in every detail. From vehicle selection to client service, we settle for nothing
+            less than perfection.
+          </p>
+        </div>
+
+        <!-- Value 3 -->
+        <div
+          class="animate-slide-in-left bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300"
+          style="animation-delay: 0.2s">
+          <div
+            class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Integrity</h3>
+          <p class="text-slate-600">
+            Doing what's right, not what's easy. Our word is our bond, and our reputation is built on trust earned
+            through consistent ethical conduct.
+          </p>
+        </div>
+
+        <!-- Value 4 -->
+        <div
+          class="animate-slide-in-right bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300"
+          style="animation-delay: 0.3s">
+          <div
+            class="w-16 h-16 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Passion</h3>
+          <p class="text-slate-600">
+            Genuine love for automotive artistry drives everything we do. We're not just sellers; we're enthusiasts,
+            collectors, and storytellers.
+          </p>
+        </div>
+
+        <!-- Value 5 -->
+        <div
+          class="animate-slide-in-right bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300"
+          style="animation-delay: 0.4s">
+          <div
+            class="w-16 h-16 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Client-Centric</h3>
+          <p class="text-slate-600">
+            Your vision, our mission. We listen intently, understand deeply, and deliver personalized experiences that
+            exceed expectations.
+          </p>
+        </div>
+
+        <!-- Value 6 -->
+        <div
+          class="animate-slide-in-right bg-slate-50 rounded-2xl p-8 border border-slate-100 group hover:border-amber-500/30 transition-all duration-300"
+          style="animation-delay: 0.5s">
+          <div
+            class="w-16 h-16 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:scale-110 transition-transform">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Innovation</h3>
+          <p class="text-slate-600">
+            Continuously evolving to redefine the luxury automotive experience through technology, process, and
+            forward-thinking solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The AutoElite Process -->
+  <section class="py-20 bg-slate-900 text-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Our Methodology</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mt-2 mb-4">The AutoElite Process</h2>
+        <p class="text-slate-300">A meticulously crafted journey from selection to delivery.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div
+            class="w-20 h-20 bg-amber-500 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            01
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-3">Global Sourcing</h3>
+          <p class="text-slate-300 text-sm">
+            Our network scouts worldwide for vehicles meeting our exacting standards of quality, history, and
+            specification.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div
+            class="w-20 h-20 bg-amber-500 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            02
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-3">150-Point Inspection</h3>
+          <p class="text-slate-300 text-sm">
+            Master technicians perform comprehensive mechanical, electrical, and cosmetic evaluation over 2-3 days.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div
+            class="w-20 h-20 bg-amber-500 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            03
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-3">Concierge Curation</h3>
+          <p class="text-slate-300 text-sm">
+            Personalized presentation with detailed history, high-resolution photography, and tailored financing
+            options.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="text-center">
+          <div
+            class="w-20 h-20 bg-amber-500 text-slate-900 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+            04
+          </div>
+          <h3 class="font-heading text-xl font-bold mb-3">White-Glove Delivery</h3>
+          <p class="text-slate-300 text-sm">
+            Final detailing, paperwork completion, and delivery to your preferred location with comprehensive
+            orientation.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <a href="contact.html"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-bold rounded-lg hover:bg-amber-500 hover:text-slate-900 transition-all duration-300">
+          <i class="fas fa-play-circle"></i>
+          Watch Our Process Video
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Our Leadership</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Meet The Visionaries</h2>
+        <p class="text-slate-600">The passionate experts driving AutoElite's continued excellence.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Team Member 1 -->
+        <div class="team-card bg-slate-50 rounded-2xl p-6 border border-slate-100 overflow-hidden">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Sterling"
+              class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 text-center mb-1">James Sterling</h3>
+          <p class="text-amber-600 font-medium text-center mb-3">Founder & CEO</p>
+          <p class="text-slate-600 text-sm text-center mb-6">
+            25+ years in luxury automotive. Former Porsche Motorsport engineer. Passionate about automotive innovation.
+          </p>
+          <div class="flex justify-center space-x-3">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fas fa-envelope text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card bg-slate-50 rounded-2xl p-6 border border-slate-100 overflow-hidden">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophia Chen"
+              class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 text-center mb-1">Sophia Chen</h3>
+          <p class="text-amber-600 font-medium text-center mb-3">Chief Operations Officer</p>
+          <p class="text-slate-600 text-sm text-center mb-6">
+            Former McKinsey consultant. Masters from Stanford. Streamlines operations while maintaining luxury
+            standards.
+          </p>
+          <div class="flex justify-center space-x-3">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fas fa-envelope text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card bg-slate-50 rounded-2xl p-6 border border-slate-100 overflow-hidden">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Marcus Johnson"
+              class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 text-center mb-1">Marcus Johnson</h3>
+          <p class="text-amber-600 font-medium text-center mb-3">Head of Vehicle Acquisition</p>
+          <p class="text-slate-600 text-sm text-center mb-6">
+            Exotic car collector with 15+ years in European automotive. Fluent in German, Italian, and Japanese.
+          </p>
+          <div class="flex justify-center space-x-3">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fas fa-envelope text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card bg-slate-50 rounded-2xl p-6 border border-slate-100 overflow-hidden">
+          <div class="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white shadow-lg">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Victoria Sterling"
+              class="w-full h-full object-cover">
+          </div>
+          <h3 class="font-heading text-xl font-bold text-slate-900 text-center mb-1">Victoria Sterling</h3>
+          <p class="text-amber-600 font-medium text-center mb-3">Director of Client Experience</p>
+          <p class="text-slate-600 text-sm text-center mb-6">
+            Luxury hospitality background from Four Seasons. Creates unforgettable automotive experiences for VIP
+            clients.
+          </p>
+          <div class="flex justify-center space-x-3">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-xs"></i>
+            </a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-amber-500 hover:text-white transition-colors">
+              <i class="fas fa-envelope text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards & Recognition -->
+  <section class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-500 font-semibold tracking-wider uppercase text-sm">Industry Recognition</span>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Awards & Accolades</h2>
+        <p class="text-slate-600">Recognition from industry leaders and satisfied clients alike.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+        <!-- Award 1 -->
+        <div
+          class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
+          <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-slate-900">Luxury Retailer</div>
+            <div class="text-xs text-slate-500">of the Year 2023</div>
+          </div>
+        </div>
+
+        <!-- Award 2 -->
+        <div
+          class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
+          <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-slate-900">Best Customer</div>
+            <div class="text-xs text-slate-500">Service 2022</div>
+          </div>
+        </div>
+
+        <!-- Award 3 -->
+        <div
+          class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
+          <div
+            class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-slate-900">5-Star Rating</div>
+            <div class="text-xs text-slate-500">Google Reviews</div>
+          </div>
+        </div>
+
+        <!-- Award 4 -->
+        <div
+          class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
+          <div
+            class="w-16 h-16 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-slate-900">BBB Accredited</div>
+            <div class="text-xs text-slate-500">A+ Rating</div>
+          </div>
+        </div>
+
+        <!-- Award 5 -->
+        <div
+          class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col items-center justify-center">
+          <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-4 text-2xl">
+            <i class="fas fa-medal"></i>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-slate-900">Excellence in</div>
+            <div class="text-xs text-slate-500">Automotive 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Press Logos -->
+      <div class="overflow-hidden">
+        <div class="flex animate-marquee space-x-12 py-4">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png"
+            alt="Google" class="h-8 opacity-60">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Forbes_logo.svg/320px-Forbes_logo.svg.png"
+            alt="Forbes" class="h-8 opacity-60">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Wall_Street_Journal_Logo.svg/320px-Wall_Street_Journal_Logo.svg.png"
+            alt="Wall Street Journal" class="h-8 opacity-60">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bloomberg_logo.svg/320px-Bloomberg_logo.svg.png"
+            alt="Bloomberg" class="h-8 opacity-60">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HowStuffWorks_logo.svg/320px-HowStuffWorks_logo.svg.png"
+            alt="HowStuffWorks" class="h-8 opacity-60">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HowStuffWorks_logo.svg/320px-HowStuffWorks_logo.svg.png"
+            alt="HowStuffWorks" class="h-8 opacity-60">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-slate-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-slate-900"></div>
+      <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=3087&auto=format&fit=crop"
+        alt="Supercar Collection" class="w-full h-full object-cover">
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mb-6">Join Our Journey</h2>
+        <p class="text-xl text-slate-300 mb-10">
+          Whether you're seeking your dream car, exploring career opportunities, or considering a partnership,
+          we invite you to become part of the AutoElite legacy.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="contact.html"
+            class="px-8 py-4 bg-amber-500 text-slate-900 font-bold rounded-lg hover:bg-amber-600 transition-colors shadow-lg shadow-amber-500/20">
+            Become a Client
+          </a>
+          <a href="#"
+            class="px-8 py-4 glass-panel text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+            Career Opportunities
+          </a>
+          <a href="contact.html#schedule"
+            class="px-8 py-4 glass-panel text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+            Visit Our Showroom
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-300 py-16 border-t border-slate-800">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-1">
+          <a href="index.html" class="flex items-center gap-2 mb-6">
+            <div class="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-white text-sm">
+              <i class="fas fa-gem"></i>
+            </div>
+            <span class="font-heading font-bold text-xl text-white">AutoElite</span>
+          </a>
+          <p class="text-sm leading-relaxed mb-6 text-slate-400">
+            Redefining the luxury automotive acquisition experience through transparency, integrity, and passion.
+          </p>
+          <div class="flex gap-4">
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="#"
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-amber-500 hover:text-slate-900 transition-colors"><i
+                class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Showroom</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="browse.html" class="hover:text-amber-500 transition-colors">Browse Inventory</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Virtual Tours</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Sell Your Vehicle</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Financing</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Company</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="about.html" class="hover:text-amber-500 transition-colors">Our Story</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-amber-500 transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-white mb-6">Contact</h4>
+          <ul class="space-y-4 text-sm">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-map-marker-alt text-amber-500 mt-1"></i>
+              <span>8800 Wilshire Blvd,<br>Beverly Hills, CA 90211</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-phone text-amber-500"></i>
+              <span>+1 (310) 555-0123</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-envelope text-amber-500"></i>
+              <span>concierge@autoelite.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <p>&copy; 2024 AutoElite Dealership. All rights reserved.</p>
+        <p>Designed with precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Animate counters when they come into view
+      const counters = document.querySelectorAll('.counter');
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = counter.style.getPropertyValue('--target');
+            counter.style.animation = 'count-up 2s ease-out forwards';
+            counter.style.setProperty('--num', target);
+            observer.unobserve(counter);
+          }
+        });
+      }, observerOptions);
+
+      counters.forEach(counter => {
+        observer.observe(counter);
+      });
+
+      // Timeline animations
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      timelineItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        timelineObserver.observe(item);
+      });
+
+      // Team card hover effects
+      const teamCards = document.querySelectorAll('.team-card');
+      teamCards.forEach(card => {
+        card.addEventListener('mouseenter', function () {
+          this.style.zIndex = '10';
+        });
+
+        card.addEventListener('mouseleave', function () {
+          this.style.zIndex = '1';
+        });
+      });
+
+      // Mobile menu toggle (basic implementation)
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      mobileMenuBtn.addEventListener('click', function () {
+        alert('Mobile menu would open here. In a full implementation, this would trigger a slide-out menu.');
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Marquee animation for press logos
+      const marquee = document.querySelector('.animate-marquee');
+      if (marquee) {
+        const marqueeContent = marquee.innerHTML;
+        marquee.innerHTML += marqueeContent; // Duplicate for seamless loop
+
+        // Pause animation on hover
+        marquee.addEventListener('mouseenter', () => {
+          marquee.style.animationPlayState = 'paused';
+        });
+
+        marquee.addEventListener('mouseleave', () => {
+          marquee.style.animationPlayState = 'running';
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
