@@ -39,6 +39,7 @@
             'count-up': 'countUp 2s ease-out forwards',
             'slide-in-left': 'slideInLeft 0.8s ease-out',
             'slide-in-right': 'slideInRight 0.8s ease-out',
+            marquee: "marquee 25s linear infinite",
           },
           keyframes: {
             float: {
@@ -60,6 +61,10 @@
             slideInRight: {
               '0%': { transform: 'translateX(30px)', opacity: '0' },
               '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            marquee: {
+              "0%": { transform: "translateX(0)" },
+              "100%": { transform: "translateX(-100%)" },
             }
           }
         }
@@ -172,6 +177,22 @@
       font-size: clamp(2rem, 6vw, 4rem);
     }
 
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .animate-marquee {
+      animation: marquee 25s linear infinite;
+      display: inline-flex;
+      white-space: nowrap;
+    }
+
     /* If you want even cleaner breakpoints: */
     @media (min-width: 640px) {
       .milestone-number {
@@ -184,6 +205,23 @@
         font-size: 5rem;
       }
     }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
 
 
     @property --num {
@@ -218,10 +256,11 @@
     </div>
   </nav>
 
-  <div
+  <nav
     class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
     <div class="flex justify-around items-center h-16 px-2">
-      <a href="./index.html" class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
+      <a href="./index.html"
+        class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-amber-500 transition-colors">
         <i class="fas fa-home text-lg mb-1"></i>
         <span class="text-[10px] font-medium">Home</span>
       </a>
@@ -242,14 +281,24 @@
         <i class="fas fa-star text-lg mb-1"></i>
         <span class="text-[10px] font-medium">Why Us</span>
       </a>
-      <a href="./about.html"
-        class="flex flex-col items-center justify-center w-full h-full text-amber-500">
+      <a href="./about.html" class="flex flex-col items-center justify-center w-full h-full text-amber-500">
         <i class="fas fa-user text-lg mb-1"></i>
         <span class="text-[10px] font-medium">About Us</span>
       </a>
     </div>
-  </div>
+  </nav>
 
+  <header
+    class="md:hidden fixed top-0 left-0 w-full z-50 bg-slate-900 border-b border-slate-800 py-3 px-4 flex items-center justify-between">
+    <a href="./index.html" class="flex items-center gap-3 group">
+      <div
+        class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+        <i class="fas fa-gem"></i>
+      </div>
+      <span class="font-heading font-bold text-2xl text-white tracking-tight">Auto<span
+          class="text-amber-500">Elite</span></span>
+    </a>
+  </header>
 
   <!-- Hero Section -->
   <section class="pt-24 md:pt-28 bg-slate-900 relative overflow-hidden">
@@ -335,7 +384,8 @@
           <div class="lg:w-2/5">
             <div class="relative">
               <div class="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=3087&auto=format&fit=crop"
+                <img
+                  src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="James Sterling, Founder" class="w-full h-full object-cover">
               </div>
               <div
@@ -854,25 +904,38 @@
       </div>
 
       <!-- Press Logos -->
-      <div class="overflow-hidden">
-        <div class="flex animate-marquee space-x-12 py-4">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png"
-            alt="Google" class="h-8 opacity-60">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Forbes_logo.svg/320px-Forbes_logo.svg.png"
-            alt="Forbes" class="h-8 opacity-60">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Wall_Street_Journal_Logo.svg/320px-Wall_Street_Journal_Logo.svg.png"
-            alt="Wall Street Journal" class="h-8 opacity-60">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Bloomberg_logo.svg/320px-Bloomberg_logo.svg.png"
-            alt="Bloomberg" class="h-8 opacity-60">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HowStuffWorks_logo.svg/320px-HowStuffWorks_logo.svg.png"
-            alt="HowStuffWorks" class="h-8 opacity-60">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/HowStuffWorks_logo.svg/320px-HowStuffWorks_logo.svg.png"
-            alt="HowStuffWorks" class="h-8 opacity-60">
+      <div class="overflow-hidden w-full">
+        <div class="flex marquee-track space-x-24">
+          <!-- GROUP A -->
+          <div class="flex flex space-x-12">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png"
+              alt="Google" class="h-8 opacity-60">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Forbes_logo.svg/1024px-Forbes_logo.svg.png"
+              alt="Forbes" class="h-8 opacity-60">
+            <img src="https://logo.clearbit.com/wsj.com" alt="Wall Street Journal" class="h-8 opacity-60">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/New_Bloomberg_Logo.svg/1024px-New_Bloomberg_Logo.svg.png?20170506043936"
+              alt="Bloomberg" class="h-8 opacity-60">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/HowStuffWorks_logo.png?20090529214018"
+              alt="HowStuffWorks" class="h-8 opacity-60">
+          </div>
+          <!-- GROUP B -->
+          <div class="flex flex space-x-12">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/320px-Google_2015_logo.svg.png"
+              alt="Google" class="h-8 opacity-60">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Forbes_logo.svg/1024px-Forbes_logo.svg.png"
+              alt="Forbes" class="h-8 opacity-60">
+            <img src="https://logo.clearbit.com/wsj.com" alt="Wall Street Journal" class="h-8 opacity-60">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/New_Bloomberg_Logo.svg/1024px-New_Bloomberg_Logo.svg.png?20170506043936"
+              alt="Bloomberg" class="h-8 opacity-60">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/HowStuffWorks_logo.png?20090529214018"
+              alt="HowStuffWorks" class="h-8 opacity-60">
+          </div>
         </div>
       </div>
     </div>

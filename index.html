@@ -125,7 +125,7 @@
     </div>
   </nav>
 
-  <div
+  <nav
     class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-slate-900 border-t border-slate-800 pb-safe shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
     <div class="flex justify-around items-center h-16 px-2">
       <a href="./index.html" class="flex flex-col items-center justify-center w-full h-full text-amber-500">
@@ -155,7 +155,18 @@
         <span class="text-[10px] font-medium">About Us</span>
       </a>
     </div>
-  </div>
+  </nav>
+
+  <header class="md:hidden fixed top-0 left-0 w-full z-50 bg-slate-900 border-b border-slate-800 py-3 px-4 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <div
+          class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <i class="fas fa-gem"></i>
+        </div>
+        <span class="font-heading font-bold text-2xl text-white tracking-tight">Auto<span
+            class="text-amber-500">Elite</span></span>
+      </a>
+  </header>
 
   <main id="home" class="relative h-screen min-h-[700px] flex items-center overflow-hidden bg-slate-900">
     <div class="absolute inset-0 z-0">
@@ -428,10 +439,10 @@
 
       <!-- Item 1 -->
       <div class="flex flex-col items-center">
-        <span class="block font-heading font-bold text-3xl text-[#f8fafc]">
+        <span class="block font-heading font-bold text-sm md:text-3xl text-[#f8fafc]">
           <span class="text-[#f59e0b]">15+</span>
         </span>
-        <span class="text-[10px] uppercase tracking-wider text-white/60">
+        <span class="text-[6px] md:text-[10px] uppercase tracking-wider text-white/60">
           Years Experience
         </span>
       </div>
@@ -439,10 +450,10 @@
 
       <!-- Item 2 -->
       <div class="flex flex-col items-center">
-        <span class="block font-heading font-bold text-3xl text-[#f8fafc]">
+        <span class="block font-heading font-bold text-sm md:text-3xl text-[#f8fafc]">
           <span class="text-[#f59e0b]">15425+</span>
         </span>
-        <span class="text-[10px] uppercase tracking-wider text-white/60">
+        <span class="text-[6px] md:text-[10px] uppercase tracking-wider text-white/60">
           Completed Orders
         </span>
       </div>
@@ -450,10 +461,10 @@
 
       <!-- Item 3 -->
       <div class="flex flex-col items-center">
-        <span class="block font-heading font-bold text-3xl text-[#f8fafc]">
+        <span class="block font-heading font-bold text-sm md:text-3xl text-[#f8fafc]">
           <span class="text-[#f59e0b]">9800+</span>
         </span>
-        <span class="text-[10px] uppercase tracking-wider text-white/60">
+        <span class="text-[6px] md:text-[10px] uppercase tracking-wider text-white/60">
           Happy Clients
         </span>
       </div>
